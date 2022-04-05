@@ -44,24 +44,20 @@ class ViewController: UIViewController {
             
             if isBlank(eng_word.text!)
             {
-                print("there is a blank")
+                //print("there is a blank")
                 has_blank.text = "blank"
             }
             else
             {
-                print("there is a no blank")
+                //print("there is a no blank")
                 has_blank.text = "no blank"
             }
-            
             
             eng_word.endEditing(true)
             url1 = URL(string: "https://tw.dictionary.search.yahoo.com/search?p=\(engWord)&ei=UTF-8&nojs=1")!
             let request1 = URLRequest(url:url1)
             webView.load(request1)
         }
-        //eng_word.endEditing(true)
-        //let request1 = URLRequest(url:url1)
-        
         
     }
 
@@ -73,9 +69,12 @@ class ViewController: UIViewController {
       }
       return true
     }
+    // only white space, white spaces, not nil
+    // has a string+white spaces or +white spaces, not nil
+    // has a string+white space(s), +string, it's nil. It would report an error: option unwrap
     
 
-    /*
+    /* check if there is blank
     extension String {
       var isBlank: Bool {
         return allSatisfy({ $0.isWhitespace })
