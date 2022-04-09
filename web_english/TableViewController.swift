@@ -16,6 +16,7 @@ class TableViewController: UITableViewController {
     //@IBOutlet weak var TableViewCell1: UITableViewCell!
     
     var animalArray = ["cat", "dog", "elephant", "rabbit"]
+    var fruitArray = ["apple", "orange", "grape", "banana"]
     
     override func numberOfSections(in TableView1: UITableView) -> Int {
         return 2
@@ -27,16 +28,24 @@ class TableViewController: UITableViewController {
             return animalArray.count
         }
         else if section == 1 {
-            return 2
+            return fruitArray.count
             
         }
-        return 8
+        return 0
         
     }
     
     override func tableView(_ TableView1: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TableView1.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = animalArray[indexPath.row]
+        if indexPath.section == 0 {
+            cell.textLabel?.text = animalArray[indexPath.row]
+            print("section 0")
+        }
+        else if indexPath.section == 1 {
+            cell.textLabel?.text = fruitArray[indexPath.row]
+            print("section 1")
+        }
+        
         return cell
     }
 
