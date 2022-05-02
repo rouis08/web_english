@@ -8,17 +8,20 @@
 import UIKit
 import WebKit
 
+
+// Tab 1
 class ViewController: UIViewController {
 
     @IBOutlet weak var eng_word: UITextField!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var Search: UIButton!
     @IBOutlet weak var has_blank: UILabel!
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         
         let url = URL(string: "https://tw.dictionary.search.yahoo.com/search?p=manipulate&ei=UTF-8&nojs=1")
         let request = URLRequest(url:url!)
