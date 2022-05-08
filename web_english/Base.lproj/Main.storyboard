@@ -257,7 +257,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="姓名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-H7-fxK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="帳號:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-H7-fxK">
                                 <rect key="frame" x="52" y="136" width="109" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -347,8 +347,8 @@
                     <navigationItem key="navigationItem" id="HSS-ix-Ci8"/>
                     <connections>
                         <outlet property="btn_send" destination="hmk-zF-elP" id="cce-0i-uFA"/>
+                        <outlet property="reg_account" destination="f2O-Nn-o2x" id="amC-xa-eUk"/>
                         <outlet property="reg_mobile" destination="lRb-sW-vsk" id="xYq-pM-ZxL"/>
-                        <outlet property="reg_name" destination="f2O-Nn-o2x" id="M14-Qb-Rzd"/>
                         <outlet property="reg_password" destination="7Ha-Pb-liZ" id="Juc-Nx-Aaq"/>
                         <outlet property="reg_password2" destination="m8C-5r-bos" id="Y2M-2Y-i6D"/>
                     </connections>

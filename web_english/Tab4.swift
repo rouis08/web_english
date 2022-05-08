@@ -4,6 +4,11 @@
 //
 //  Created by Shao Hua Lee on 4/5/22.
 //
+//  Explanation :
+//       This file is to send the POST data to login.php
+//
+//
+//
 
 import UIKit
 
@@ -16,29 +21,30 @@ struct member_user {
 }
 
 
-//struct purchase: Codable {
-//    var a: String
-//    var b: String
+//truct purchase: Codable {
+//    var status1: String
+//    var message1: String
 //}
 
-struct purchase: Codable {
-   
-    var id: String
-    var item: String
-    var price: String
-    var amount: String
-    var shipping: String
-    var total: String
-    var purchase_date: String
-    var location: String
-    var payment: String
-    var note: String
+
+struct CreateHttpBody: Encodable {
+    let item: String
+    let price: Int16
+    let amount: Int16
+    let shipping: Int16
+    let today: String
+    let location: String
+    let payment: String
+    let memo: String
 }
 
-struct Dog: Codable {
-    var name: String
-    var owner: String
+
+struct CreateHttpResponse: Decodable {
+    let status1: String
+    let message1: String
 }
+
+
 
 class ViewController_item2: UIViewController {
 
@@ -81,96 +87,50 @@ class ViewController_item2: UIViewController {
         print("btn_send pressed")
         
         let url = URL(string: "http://1.34.110.11/webEnglish/login.php");
-        //let url = URL(string: "http://localhost/read_purchase_json2.php");
     
- 
-
         //let id1:String = id_text.text!;
         let rg_name:String = account1.text!;
         let rg_pass:String = password1.text!;
         
-
-        // Encode
-        let dog = Dog(name: "Rex", owner: "Etgar")
-
-        let jsonEncoder = JSONEncoder()
-        do {
-            let jsonData = try jsonEncoder.encode(dog)
-            let json = String(data: jsonData, encoding: String.Encoding.utf16)
-            let jsonDecoder = JSONDecoder()
-            let secondDog = try jsonDecoder.decode(Dog.self, from: jsonData)
-            print(secondDog)
-            
-            //secondDog.forEach { (p) in
-           //    print(p)
-           // }
-            
-        } catch {
-            
-        }
-
-    
+  
         //Uses APIs
-        var request = URLRequest(
-            url: url!,
-            cachePolicy:.reloadIgnoringLocalAndRemoteCacheData,
-            timeoutInterval: 30);
+        var request = URLRequest(   url: url!,
+                                    cachePolicy:.reloadIgnoringLocalAndRemoteCacheData,
+                                    timeoutInterval: 30);
         
-
-            // Send Post
-            //request.httpBody = "x=5&y=3".data(using: .utf8)
-            request.httpBody = "account=\(rg_name)&password=\(rg_pass)".data(using: .utf8)
-            request.httpMethod = "POST"
+        // Send Post
+        // request.httpBody = "x=5&y=3".data(using: .utf8)
+        request.httpBody = "account=\(rg_name)&password=\(rg_pass)".data(using: .utf8)
+        request.httpMethod = "POST"
             
-            let session = URLSession(configuration: .default);
+        let session = URLSession(configuration: .default);
             
-            let dataTask = session.dataTask(with: request) { (data, response, error) in
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
                 if let data = data {
-                
-                    print("---0--\n")
-                    print(data)
-
-                    let html:String = String(data: data, encoding: .utf8)!
-                    print("---1--\n")
-                    print(html)
-                    
-                    print("---1.1--\n")
-                    //print(html!)
-                    
-                    let data1 = html.data(using: .utf8)!
-                    
-                    print("---1.2--\n")
-                    print(data as NSData)
-                    
-                  //  let dog = purchase(a: "test", b: "eead")
-
-                  //  let jsonEncoder = JSONEncoder()
-                  //  let jsonData = try jsonEncoder.encode(dog)
-                  //  let json = String(data: jsonData, encoding: String.Encoding.utf16)
-                    
-                    
-                    
                     do {
-                             //let aqi = try JSONDecoder().decode(dog.self, from: data)
-                        let aqi = try JSONDecoder().decode([purchase].self, from: data)
+                            print("---1--\n")
+                            let html1 = String(data: data, encoding: .utf8)
+                            print(html1)
+                        
+                             let aqi = try JSONDecoder().decode([CreateHttpResponse].self, from: data)
                              print("---2--\n")
                              print(aqi)
 
                              print("---3--\n")
                              aqi.forEach { (p) in
                                 print(p)
+                                 
+                                 //print(aqi.[purchase].status1)
+                                 //print(aqi.message1)
+
                              }
+                        
 
                        } catch  {
                              print(" enter error routine \n")
-                             print(error)
-                             print(data)
                     }
-                    //let aqi = try! JSONDecoder().decode([purchase].self, from: data)
-                    //aqi.forEach { (p) in
-                    //    print(p)
-                    //}
                     print("http connected success");
+
                 }
                 else {
                     print("http connected failed");
@@ -178,7 +138,6 @@ class ViewController_item2: UIViewController {
             }
 
             dataTask.resume()
-
     }
     
     //Register an account
